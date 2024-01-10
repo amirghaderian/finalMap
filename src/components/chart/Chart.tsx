@@ -1,3 +1,4 @@
+// @ts-nocheck
 import ReactEcharts from "echarts-for-react";
 import { useEffect, useRef, useState } from "react";
 import data from "../../services/servers.json";

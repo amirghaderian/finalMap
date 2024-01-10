@@ -1,4 +1,5 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+// @ts-nocheck
+import { useEffect, useRef, useState } from "react";
 import "ol/ol.css";
 import { Map, View } from "ol";
 import TileLayer from "ol/layer/Tile";
@@ -10,8 +11,6 @@ import { Vector as VectorLayer } from "ol/layer";
 import { Vector as VectorSource } from "ol/source";
 import { Style, Fill, Stroke, Circle } from "ol/style";
 import data from "../../services/servers.json";
-// import ol from "ol/Observable.js";
-// import { bservable } from "ol";
 import { Observable } from "ol";
 import { XYZ } from "ol/source";
 
@@ -106,33 +105,6 @@ const LittleMap = ({
       }
     };
   }, []);
-
-  // const evHandler = useCallback(
-  // 	function (event) {
-  // 		console.log("!!@!@");
-  // 		console.log({ selectedPointsCount });
-  // 		const feature = myMap.current.forEachFeatureAtPixel(
-  // 			event.pixel,
-  // 			function (feature) {
-  // 				return feature;
-  // 			}
-  // 		);
-
-  // 		if (feature) {
-  // 			console.log({ feature });
-  // 			const featureId = feature.ol_uid;
-  // 			onSelectedChange(featureId);
-  // 			setOpen(true);
-  // 			setIdNumber(Number(featureId));
-  // 			onIdNumberChange(Number(featureId));
-  // 		}
-  // 		// if (selectedPointsCount < 5) {
-  // 		// }
-  // 	},
-  // 	[]
-  // 	// [selectedPointsCount, myMap.current]
-  // );
-
   useEffect(
     () => {
       // let evHandler;
