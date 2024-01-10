@@ -1,0 +1,357 @@
+[
+	{
+		"id": 1,
+		"title": "خیابان مجد",
+		"on": false,
+		"featureId": 24,
+		"location": {
+			"latitude": "35.70213187527045",
+			"longitude": "51.390607980835355"
+		},
+		"time_series": [150, 230, 224, 218, 135, 147, 260]
+	},
+	{
+		"id": 2,
+		"title": " خیابان پرنده‌پر",
+		"on": false,
+		"featureId": 26,
+		"location": {
+			"latitude": "35.702323549552034",
+			"longitude": "51.395736364417886"
+		},
+		"time_series": [120, 130, 114, 100, 330, 124, 200]
+	},
+
+	{
+		"id": 3,
+		"title": "خیابان خنکار",
+		"on": false,
+		"featureId": 28,
+		"location": {
+			"latitude": "35.70486319036077",
+			"longitude": "51.39327409651009"
+		},
+		"time_series": [50, 60, 70, 80, 90, 124, 43]
+	},
+	{
+		"id": 4,
+		"title": "خیابان شاداب",
+		"on": false,
+		"featureId": 30,
+		"location": {
+			"latitude": "35.70823908847428",
+			"longitude": "51.39085474403116"
+		},
+		"time_series": [123, 321, 43, 12, 54, 34, 130]
+	},
+	{
+		"id": 5,
+		"title": "خیابان رازآلود",
+		"on": false,
+		"featureId": 32,
+		"location": {
+			"latitude": "35.703663923350675",
+			"longitude": "51.409035618383726"
+		},
+		"time_series": [100, 90, 80, 70, 60, 70, 50]
+	},
+	{
+		"id": 6,
+		"title": "خیابان پنجره‌ ",
+		"on": false,
+		"featureId": 34,
+		"location": {
+			"latitude": "35.7419407564125",
+			"longitude": "51.506861063755736"
+		},
+		"time_series": [122, 32, 123, 54, 343, 23, 42]
+	},
+	{
+		"id": 7,
+		"title": "خیابان پنهان",
+		"on": false,
+		"featureId": 36,
+		"location": {
+			"latitude": "35.711482983413845",
+			"longitude": "51.39657801126585"
+		},
+		"time_series": [90, 100, 90, 95, 110, 112, 120]
+	},
+	{
+		"id": 8,
+		"title": "خیابان قهوه‌خانه",
+		"on": false,
+		"featureId": 38,
+		"location": {
+			"latitude": "35.715379676125025",
+			"longitude": "51.393580434614954"
+		},
+		"time_series": [87, 43, 64, 76, 52, 74, 43]
+	},
+	{
+		"id": 9,
+		"title": "خیابان کوهستانی",
+		"on": false,
+		"featureId": 40,
+		"location": {
+			"latitude": "35.703805894048784",
+			"longitude": "51.35173548954801"
+		},
+		"time_series": [32, 34, 53, 36, 52, 64, 43]
+	},
+	{
+		"id": 10,
+		"title": "خیابان آفتاب‌پرست",
+		"on": false,
+		"featureId": 42,
+		"location": {
+			"latitude": "35.72062808634242",
+			"longitude": "51.38783574399656"
+		},
+		"time_series": [5, 2, 63, 2, 6, 46, 33]
+	},
+	{
+		"id": 11,
+		"title": "خیابان همیشه‌سبز",
+		"on": false,
+		"featureId": 44,
+		"location": {
+			"latitude": "36.31611006432081",
+			"longitude": "59.53205560302063"
+		},
+		"time_series": [5, 2, 63, 2, 6, 46, 33]
+	},
+	{
+		"id": 12,
+		"title": "خیابان پروازی",
+		"on": false,
+		"featureId": 46,
+		"location": {
+			"latitude": "36.31594575610212",
+			"longitude": "59.53425501447667"
+		},
+		"time_series": [5, 2, 63, 2, 6, 46, 33]
+	},
+	{
+		"id": 13,
+		"title": "خیابان مهربان",
+		"on": false,
+		"featureId": 48,
+		"location": {
+			"latitude": "36.31774387544135",
+			"longitude": "59.52789281485057"
+		},
+		"time_series": [5, 2, 63, 2, 6, 46, 33]
+	},
+	{
+		"id": 14,
+		"title": "خیابان دل‌باخته",
+		"on": false,
+		"featureId": 50,
+		"location": {
+			"latitude": "36.30008652338632",
+			"longitude": "59.5884308866251"
+		},
+		"time_series": [5, 2, 63, 2, 6, 46, 33]
+	},
+	{
+		"id": 15,
+		"title": "خیابان کوچک‌پرنده",
+		"on": false,
+		"featureId": 52,
+		"location": {
+			"latitude": "36.31362967921842",
+			"longitude": "59.535817847997805"
+		},
+		"time_series": [5, 2, 63, 2, 6, 46, 33]
+	},
+	{
+		"id": 16,
+		"title": "خیابان داستان‌پرداز",
+		"on": false,
+		"featureId": 54,
+		"location": {
+			"latitude": "29.459469836410477",
+			"longitude": "60.85284872106009"
+		},
+		"time_series": [5, 2, 20, 2, 6, 46, 33]
+	},
+	{
+		"id": 17,
+		"title": "خیابان کلاغ‌های رنگی",
+		"on": false,
+		"featureId": 56,
+		"location": {
+			"latitude": "29.454548644625785",
+			"longitude": "60.85299374429668"
+		},
+		"time_series": [40, 2, 20, 2, 6, 46, 33]
+	},
+	{
+		"id": 18,
+		"title": "خیابان آتشفشانی",
+		"on": false,
+		"featureId": 58,
+		"location": {
+			"latitude": "29.452754947214984",
+			"longitude": "60.847715157085815"
+		},
+		"time_series": [40, 2, 50, 2, 6, 4, 33]
+	},
+	{
+		"id": 19,
+		"title": "خیابان  سویه‌های عشق",
+		"on": false,
+		"featureId": 60,
+		"location": {
+			"latitude": "29.460287735905638",
+			"longitude": "60.8532150866251"
+		},
+		"time_series": [3, 2, 50, 20, 6, 4, 33]
+	},
+
+	{
+		"id": 20,
+		"title": "خیابان حکمت‌آموز",
+		"on": false,
+		"featureId": 62,
+		"location": {
+			"latitude": "31.838165501339535",
+			"longitude": "54.355954562900514"
+		},
+		"time_series": [3, 2, 50, 20, 6, 4, 33]
+	},
+
+	{
+		"id": 21,
+		"title": "خیابان پرنده‌های الکترونیک",
+		"on": false,
+		"featureId": 64,
+		"location": {
+			"latitude": "31.83164478625494",
+			"longitude": "54.35760634244612"
+		},
+		"time_series": [3, 20, 50, 2, 6, 4, 33]
+	},
+	{
+		"id": 22,
+		"title": "خیابان کتابخانهٔ ",
+		"on": false,
+		"featureId": 66,
+		"location": {
+			"latitude": "31.867789282782752",
+			"longitude": "54.351216542446124"
+		},
+		"time_series": [30, 20, 50, 2, 60, 4, 33]
+	},
+	{
+		"id": 23,
+		"title": "خیابان کلیدار خواب",
+		"on": false,
+		"featureId": 68,
+		"location": {
+			"latitude": "31.839608359600643",
+			"longitude": "54.35159682895351"
+		},
+		"time_series": [3, 25, 50, 2, 60, 40, 33]
+	},
+	{
+		"id": 24,
+		"title": "خیابان شکوهمند",
+		"on": false,
+		"featureId": 70,
+		"location": {
+			"latitude": "35.855539847298246",
+			"longitude": "50.98374197878343"
+		},
+		"time_series": [3, 25, 50, 2, 60, 40, 33]
+	},
+	{
+		"id": 25,
+		"title": "خیابان گل‌های تلخ",
+		"on": false,
+		"featureId": 72,
+		"location": {
+			"latitude": "35.85080925466941",
+			"longitude": "50.987175206237644"
+		},
+		"time_series": [3, 25, 50, 2, 60, 40, 33]
+	},
+	{
+		"id": 26,
+		"title": "خیابان رازآلود",
+		"on": false,
+		"featureId": 74,
+		"location": {
+			"latitude": "35.85992235034866",
+			"longitude": "50.91662238205343"
+		},
+		"time_series": [3, 25, 50, 2, 60, 40, 33]
+	},
+	{
+		"id": 27,
+		"title": "خیابان  آهنگ فراموش‌شده",
+		"on": false,
+		"featureId": 76,
+		"location": {
+			"latitude": "35.689814958755484",
+			"longitude": "51.111787625025094"
+		},
+		"time_series": [3, 25, 50, 2, 60, 40, 33]
+	},
+	{
+		"id": 28,
+		"title": "خیابان شمعدان ",
+		"on": false,
+		"featureId": 78,
+		"location": {
+			"latitude": "35.68921370265823",
+			"longitude": "51.11479169904753"
+		},
+		"time_series": [3, 25, 50, 2, 60, 40, 33]
+	},
+	{
+		"id": 29,
+		"title": "خیابان مجد",
+		"on": false,
+		"featureId": 80,
+		"location": {
+			"latitude": "35.684393847126145",
+			"longitude": "51.259588250276416"
+		},
+		"time_series": [3, 25, 50, 2, 60, 40, 33]
+	},
+	{
+		"id": 30,
+		"title": "خیابان عزیزی",
+		"on": false,
+		"featureId": 82,
+		"location": {
+			"latitude": "35.712153088675095",
+			"longitude": "51.46720420324472"
+		},
+		"time_series": [3, 20, 50, 2, 60, 40, 33]
+	},
+	{
+		"id": 31,
+		"title": "خیابان محمدی",
+		"on": false,
+		"featureId": 84,
+		"location": {
+			"latitude": "35.75263330857825",
+			"longitude": "51.4369918015097"
+		},
+		"time_series": [3, 20, 50, 2, 60, 40, 33]
+	},
+	{
+		"id": 32,
+		"title": "خیابان سرسبز",
+		"on": false,
+		"featureId": 85,
+		"location": {
+			"latitude": "35.70823908847428",
+			"longitude": "51.39657801126585"
+		},
+		"time_series": [50, 60, 70, 80, 90, 124, 43]
+	}
+]
