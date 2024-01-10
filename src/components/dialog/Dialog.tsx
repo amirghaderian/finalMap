@@ -1,5 +1,4 @@
 // @ts-nocheck
-
 import { styled } from "@mui/material/styles";
 import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
@@ -7,22 +6,26 @@ import DialogContent from "@mui/material/DialogContent";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import Typography from "@mui/material/Typography";
+import RadioButtonUnchecked from "@mui/icons-material/RadioButtonUnchecked";
+import RadioButtonChecked from "@mui/icons-material/RadioButtonChecked";
 import { LittleMap } from "..";
 import {
   Box,
   Checkbox,
+  Divider,
   FormControl,
   FormControlLabel,
   FormGroup,
   Stack,
+  Tooltip,
 } from "@mui/material";
 import Iran from "../../images/iranFlag.png";
 import data from "../../services/servers.json";
 import { useEffect, useState, useCallback } from "react";
 import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
-import Echart2 from "../chart/Chart2";
+import Echart from "../chart/Chart";
 
-const colorArr = ["red", "blue", "black", "green", "purple"];
+const colorArr = ["#ff595e", "#1982c4", "#ffca3a", "#8ac926", "#6a4c93"];
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
@@ -55,10 +58,10 @@ const Dialogs = ({
   const [selectedPointsCount, setSelectedPointsCount] = useState(1);
 
   const [availableColors, setAvailableColors] = useState([
-    "blue",
-    "black",
-    "green",
-    "purple",
+    "#1982c4",
+    "#ffca3a",
+    "#8ac926",
+    "#6a4c93",
   ]);
 
   useEffect(() => {
@@ -71,20 +74,14 @@ const Dialogs = ({
 
     setNearPoints(
       filteredPoints.map((point) => {
-        // console.log({ point });
         return {
           ...point,
           selected: point.id === fId,
-          fillColor: point.id === fId ? "red" : "#A6A7A6",
+          fillColor: point.id === fId ? "#ff595e" : "#A6A7A6",
         };
       })
     );
   }, [data, isOpen]);
-
-  const handleIdNumberChange = (newIdNumber) => {
-    console.log("Id Number changed:", newIdNumber);
-    setLittleMapId(newIdNumber);
-  };
 
   const style = {
     p: 0,
@@ -103,25 +100,21 @@ const Dialogs = ({
   }, [isOpen]);
 
   const handleChange = (event) => {
-    const changeCheck = {
-      ...nearPoints.find((point) => point.id == event.target.id),
-    };
+    const aa = { ...nearPoints.find((point) => point.id == event.target.id) };
     const filteredPoints = nearPoints.filter(
       (point) => point.id != event.target.id
     );
-    changeCheck.selected = event.target.checked;
+    aa.selected = event.target.checked;
     if (event.target.checked) {
-      changeCheck.fillColor = availableColors[0];
+      aa.fillColor = availableColors[0];
       setAvailableColors(
         [...availableColors].filter((color) => color !== availableColors[0])
       );
-      // setSelectedPointsCount((prev) => (prev += 1));
     } else {
-      setAvailableColors([...availableColors, changeCheck.fillColor]);
-      changeCheck.fillColor = "#A6A7A6";
-      // setSelectedPointsCount((prev) => (prev -= 1));
+      setAvailableColors([...availableColors, aa.fillColor]);
+      aa.fillColor = "#A6A7A6";
     }
-    setNearPoints([...filteredPoints, changeCheck]);
+    setNearPoints([...filteredPoints, aa]);
   };
 
   const handleOnSelectedChange = useCallback(
@@ -143,8 +136,6 @@ const Dialogs = ({
       selectedPoint.selected = !selectedPoint.selected;
 
       setNearPoints([...otherPoints, selectedPoint]);
-      // if (selectedPointsCount < 5) {
-      // }
     },
     [availableColors, nearPoints, selectedPointsCount]
   );
@@ -184,21 +175,29 @@ const Dialogs = ({
               <Box>
                 <LittleMap
                   center={center}
-                  onIdNumberChange={handleIdNumberChange}
                   centerId={centerId}
                   onSelectedChange={handleOnSelectedChange}
                   nearPoints={nearPoints}
-                  setNearPoints={setNearPoints}
                   selectedPointsCount={selectedPointsCount}
                   setSelectedPointsCount={setSelectedPointsCount}
                 />
               </Box>
+              <Stack
+                direction="row"
+                justifyContent="space-between"
+                sx={{ m: 1 }}
+              >
+                <Typography variant="caption">{selectedPointsCount}</Typography>
+                <Tooltip title="امکان انتخاب حداکثر 5 نقطه">
+                  <Typography variant="caption">نقاط انتخاب شده</Typography>
+                </Tooltip>
+              </Stack>
               <Box sx={{ flexGrow: 1, position: "relative" }}>
                 <Box
                   sx={{ height: "100%", maxHeight: "100%", overflowY: "auto" }}
                 >
                   <FormControl sx={style} aria-label="mailbox folders">
-                    <FormGroup>
+                    <FormGroup sx={{ px: 1 }}>
                       {nearPoints
                         .sort((a, b) => a.id - b.id)
                         .map((item) => {
@@ -221,9 +220,10 @@ const Dialogs = ({
                                 }
                                 control={
                                   <Checkbox
+                                    name={item.title}
+                                    id={item.id.toString()}
                                     checked={item.selected}
                                     onChange={(event) => {
-                                      // handleOnSelectedChange(event?.target.id);
                                       handleChange(event);
                                       setSelectedPointsCount(
                                         (prev) =>
@@ -235,17 +235,18 @@ const Dialogs = ({
                                     disabled={
                                       selectedPointsCount >= 5 && !item.selected
                                     }
-                                    sx={{
-                                      color: item.fillColor,
-                                      "&.Mui-checked": {
-                                        color: item.fillColor,
-                                      },
-                                    }}
-                                    name={item.title}
-                                    id={item.id.toString()}
+                                    icon={<RadioButtonUnchecked />}
+                                    checkedIcon={
+                                      <RadioButtonChecked
+                                        sx={{
+                                          color: item.fillColor,
+                                        }}
+                                      />
+                                    }
                                   />
                                 }
                               />
+                              <Divider light sx={{ borderStyle: "dashed" }} />
                             </>
                           );
                         })}
@@ -255,19 +256,15 @@ const Dialogs = ({
               </Box>
             </Grid2>
             <Grid2 xs={9}>
-              <Echart2
-                // style={{ height: "500px" }}
+              <Echart
                 timeSeries={timeSeries}
                 fId={fId}
                 onIdNumberChange={onIdNumberChange}
                 littleMapId={littleMapId}
                 nearPoints={nearPoints}
               />
-    
             </Grid2>
           </Grid2>
-
-          {/* <Typography gutterBottom>sadsa</Typography> */}
         </DialogContent>
       </BootstrapDialog>
     </div>

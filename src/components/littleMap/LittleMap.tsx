@@ -10,38 +10,18 @@ import Feature from "ol/Feature";
 import { Vector as VectorLayer } from "ol/layer";
 import { Vector as VectorSource } from "ol/source";
 import { Style, Fill, Stroke, Circle } from "ol/style";
-import data from "../../services/servers.json";
 import { Observable } from "ol";
 import { XYZ } from "ol/source";
 
 const LittleMap = ({
   center,
-  onIdNumberChange,
-  centerId,
   onSelectedChange,
   nearPoints,
-  setNearPoints,
   selectedPointsCount,
 }) => {
   const mapContainerRef = useRef(null);
-  const [open, setOpen] = useState(false);
-  const [idNumber, setIdNumber] = useState<Number>();
   const access_token =
     "pk.eyJ1IjoicXVlMzIxNiIsImEiOiJjaWhxZmMxMDUwMDBzdXhsdWh0ZDkyMzVqIn0.sz3lHuX9erctIPE2ya6eCw";
-  const y = 0.01324773;
-  const x = 2.16 * y;
-  console.log(center);
-  const FindLatiude = data.find((item) => item.id === centerId)?.location
-    .latitude;
-  const FindeLongitude = data.find((item) => item.id === centerId)?.location
-    .longitude;
-  const FilterNear = data.filter(
-    (item) =>
-      (item.location.latitude >= FindLatiude - y &&
-        item.location.latitude <= FindLatiude + y) ||
-      (item.location.longitude >= FindeLongitude - x &&
-        item.location.longitude <= FindeLongitude + x)
-  );
 
   const myMap = useRef(null);
 
@@ -74,26 +54,6 @@ const LittleMap = ({
       interactions: [],
     });
 
-    map.on("click", function (event) {
-      const feature = map.forEachFeatureAtPixel(
-        event.pixel,
-        function (feature) {
-          return feature;
-        }
-      );
-
-      if (feature) {
-        console.log({ feature });
-        const featureId = feature.ol_uid;
-        // onSelectedChange(featureId);
-
-        setOpen(true);
-        setIdNumber(Number(featureId));
-        onIdNumberChange(Number(featureId));
-      }
-    });
-
-    // setMyMap(map);
     myMap.current = map;
 
     return () => {
@@ -105,56 +65,34 @@ const LittleMap = ({
       }
     };
   }, []);
-  useEffect(
-    () => {
-      // let evHandler;
-      console.count("called");
-      if (myMap.current) {
-        // myMap.current.un("click", evHandler);
-        const evHandler = function (event) {
-          console.log("!!@!@");
-          console.log({ selectedPointsCount });
-          const feature = myMap.current.forEachFeatureAtPixel(
-            event.pixel,
-            function (feature) {
-              return feature;
-            }
-          );
-
-          if (feature) {
-            console.log({ feature });
-            const featureId = feature.ol_uid;
-            const selectedPoint = {
-              ...nearPoints.find((point) => point.id == featureId),
-            };
-            if (selectedPointsCount < 5) {
-              onSelectedChange(featureId);
-              setOpen(true);
-              setIdNumber(Number(featureId));
-              onIdNumberChange(Number(featureId));
-            } else if (selectedPoint.selected) {
-              onSelectedChange(featureId);
-              setOpen(true);
-              setIdNumber(Number(featureId));
-              onIdNumberChange(Number(featureId));
-            }
+    useEffect(() => {
+    if (myMap.current) {
+      const evHandler = function (event) {
+        const feature = myMap.current.forEachFeatureAtPixel(
+          event.pixel,
+          function (feature) {
+            return feature;
           }
-          // if (selectedPointsCount < 5) {
-          // }
-        };
-        myMap.current.on("click", evHandler);
-        return () => {
-          // if (evHandler.current) {
-          // 	// Observable.unByKey(evHandler.current);
-          // 	evHandler.current = null;
-          // }
-          // console.log("CALLING RET");
-          myMap?.current?.un("click", evHandler);
-        };
-      }
+        );
+
+        if (feature) {
+          const featureId = feature.ol_uid;
+          const selectedPoint = {
+            ...nearPoints.find((point) => point.id == featureId),
+          };
+          if (selectedPointsCount < 5) {
+            onSelectedChange(featureId);
+          } else if (selectedPoint.selected) {
+            onSelectedChange(featureId);
+          }
+        }
+      };
+      myMap.current.on("click", evHandler);
+      return () => {
+        myMap?.current?.un("click", evHandler);
+      };
     }
-    // [onSelectedChange, selectedPointsCount]
-  );
+  });
 
   useEffect(() => {
     // Create an array of points
@@ -177,8 +115,6 @@ const LittleMap = ({
           image: new Circle({
             radius: 7,
             fill: new Fill({
-              // color: centerId === point.id ? "red" : point.color,
-              // color: point.selected ? "red" : point.color,
               color: point.color,
             }),
             stroke: new Stroke({ color: "#808080", width: 1 }),
@@ -199,16 +135,6 @@ const LittleMap = ({
       myMap.current.addLayer(vectorLayer);
     }
   }, [nearPoints]);
-
-  const handleChange = (event) => {
-    const aa = { ...nearPoints.find((point) => point.id == event.target.id) };
-    const filteredPoints = nearPoints.filter(
-      (point) => point.id != event.target.id
-    );
-    aa.selected = event.target.checked;
-    console.log({ nearPoints });
-    setNearPoints([...filteredPoints, aa]);
-  };
 
   return (
     <>

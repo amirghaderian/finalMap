@@ -21,13 +21,16 @@ const MapComponent = () => {
   const [center, setCenter] = useState([]);
   const [timeSeries, setTimeSeries] = useState([]);
   const [littleMapId, setLittleMapId] = useState(null);
+
   const handleClickOpen = () => {
     setOpen(true);
+    console.log(open);
   };
   const [centerId, setCenterId] = useState<Number>();
   const access_token =
     "pk.eyJ1IjoicXVlMzIxNiIsImEiOiJjaWhxZmMxMDUwMDBzdXhsdWh0ZDkyMzVqIn0.sz3lHuX9erctIPE2ya6eCw";
   const handleClose = () => {
+    setLittleMapId(null);
     setOpen(false);
   };
 
@@ -37,7 +40,10 @@ const MapComponent = () => {
     const mapContainer = document.createElement("div");
     mapContainer.id = mapContainerId;
     mapContainer.style.width = "100%";
-    mapContainer.style.height = "100%";
+    mapContainer.style.height = "100vh";
+
+    mapContainerRef.current = mapContainer;
+
     document.getElementById("map-container").appendChild(mapContainer);
 
     const map = new Map({
@@ -51,7 +57,7 @@ const MapComponent = () => {
       ],
       view: new View({
         center: [5720467.70799008, 4262248.0061709145],
-        zoom: 13,
+        zoom: 12,
       }),
     });
 
@@ -120,7 +126,11 @@ const MapComponent = () => {
 
   return (
     <>
-      <div id="map-container" style={{ width: "100%", height: "700px" }}></div>
+      <div
+        id="map-container"
+        style={{ width: "100%", height: "100vh" }}
+        ref={mapContainerRef}
+      ></div>
       {open && (
         <Dialogs
           littleMapId={littleMapId}
