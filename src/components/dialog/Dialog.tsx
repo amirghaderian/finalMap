@@ -1,13 +1,9 @@
 // @ts-nocheck
 import { styled } from "@mui/material/styles";
-import Dialog from "@mui/material/Dialog";
-import DialogTitle from "@mui/material/DialogTitle";
-import DialogContent from "@mui/material/DialogContent";
+import { Dialog, DialogTitle, DialogContent, Typography } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
-import Typography from "@mui/material/Typography";
-import RadioButtonUnchecked from "@mui/icons-material/RadioButtonUnchecked";
-import RadioButtonChecked from "@mui/icons-material/RadioButtonChecked";
+import { RadioButtonUnchecked, RadioButtonChecked } from "@mui/icons-material";
 import { LittleMap } from "..";
 import {
   Box,
@@ -49,7 +45,6 @@ const Dialogs = ({
   const y = 0.01324773;
   const x = 2.16 * y;
   const findCenter = data.find((item) => item.id === centerId);
-  console.log(findCenter, "center");
   const FindLatiude = data.find((item) => item.id === centerId)?.location
     .latitude;
   const FindeLongitude = data.find((item) => item.id === centerId)?.location
@@ -57,6 +52,7 @@ const Dialogs = ({
   const [nearPoints, setNearPoints] = useState([]);
   const [selectedPointsCount, setSelectedPointsCount] = useState(1);
 
+  console.log("nearPoints", nearPoints.length);
   const [availableColors, setAvailableColors] = useState([
     "#1982c4",
     "#ffca3a",
@@ -87,7 +83,7 @@ const Dialogs = ({
     p: 0,
     width: "100%",
     maxWidth: 282,
-    height:"150px",
+    height: "150px",
     borderRadius: 2,
     border: "1px solid",
     borderColor: "divider",
@@ -101,21 +97,24 @@ const Dialogs = ({
   }, [isOpen]);
 
   const handleChange = (event) => {
-    const aa = { ...nearPoints.find((point) => point.id == event.target.id) };
+    const selectedCheack = {
+      ...nearPoints.find((point) => point.id == event.target.id),
+    };
+    console.log(selectedCheack);
     const filteredPoints = nearPoints.filter(
       (point) => point.id != event.target.id
     );
-    aa.selected = event.target.checked;
+    selectedCheack.selected = event.target.checked;
     if (event.target.checked) {
-      aa.fillColor = availableColors[0];
+      selectedCheack.fillColor = availableColors[0];
       setAvailableColors(
         [...availableColors].filter((color) => color !== availableColors[0])
       );
     } else {
-      setAvailableColors([...availableColors, aa.fillColor]);
-      aa.fillColor = "#A6A7A6";
+      setAvailableColors([...availableColors, selectedCheack.fillColor]);
+      selectedCheack.fillColor = "#A6A7A6";
     }
-    setNearPoints([...filteredPoints, aa]);
+    setNearPoints([...filteredPoints, selectedCheack]);
   };
 
   const handleOnSelectedChange = useCallback(
@@ -149,7 +148,11 @@ const Dialogs = ({
         onClose={handleClose}
         aria-labelledby="customized-dialog-title"
         open={isOpen}
-        sx={{ width: "100%", height: "100%" }}
+        sx={{
+          width: "100%",
+          height: "100%",
+          "& .MuiDialogContent-root": { overflow: "hidden" },
+        }}
       >
         <DialogTitle
           id="customized-dialog-title"
@@ -188,27 +191,49 @@ const Dialogs = ({
                 justifyContent="space-between"
                 sx={{ m: 1 }}
               >
-                <Typography variant="caption">{selectedPointsCount}</Typography>
+                <div className="flex justify-between items-center   w-full ">
+                  <Typography variant="caption" sx={{ fontSize: "20px" }}>
+                    {nearPoints.length}
+                  </Typography>
+                  <Tooltip>
+                    <Typography variant="caption">
+                      <span className="text-[14px]">
+                        تعداد کل نقاط در این محدوده
+                      </span>
+                    </Typography>
+                  </Tooltip>
+                </div>
+              </Stack>
+              <Stack
+                direction="row"
+                justifyContent="space-between"
+                sx={{ m: 1 }}
+              >
+                <Typography variant="caption" sx={{ fontSize: "20px" }}>
+                  {selectedPointsCount}
+                </Typography>
                 <Tooltip title="امکان انتخاب حداکثر 5 نقطه">
-                  <Typography variant="caption">نقاط انتخاب شده</Typography>
+                  <Typography variant="caption">
+                    <span className="text-[14px]">نقاط انتخاب شده</span>
+                  </Typography>
                 </Tooltip>
               </Stack>
+
               <Box sx={{ flexGrow: 1, position: "relative" }}>
-                <Box
-                className="h-full max-h-full overflow-y-auto items-baseline "
-                >
+                <Box className="h-full max-h-full overflow-y-auto items-baseline">
                   <FormControl sx={style} aria-label="mailbox folders">
-                    <FormGroup sx={{ px: 1,height:"500px" ,}}>
+                    <FormGroup sx={{ px: 1, height: "500px" }}>
                       {nearPoints
                         .sort((a, b) => a.id - b.id)
                         .map((item) => {
                           return (
                             <div key={item.id}>
-                              <FormControlLabel key={item}
+                              <FormControlLabel
+                                key={item}
                                 label={
                                   <Stack direction="row">
                                     <img
-                                    className="my-auto"
+                                      className="my-auto"
                                       style={{
                                         width: "32px",
                                         height: "24px",

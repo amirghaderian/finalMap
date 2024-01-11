@@ -58,7 +58,7 @@ const Echart = ({ nearPoints }) => {
         xAxisIndex: [0],
       },
       {
-        show: true,
+        show: false,
         type: "slider",
         start: 0,
         end: 100,

@@ -128,7 +128,7 @@ const MapComponent = () => {
     <>
       <div
         id="map-container"
-        style={{ width: "100%", height: "93vh" }}
+        style={{ width: "100%", height: "92vh" }}
         ref={mapContainerRef}
       ></div>
       {open && (
