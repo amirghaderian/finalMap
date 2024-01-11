@@ -52,6 +52,7 @@ const LittleMap = ({
         maxZoom: 13,
       }),
       interactions: [],
+      controls: []
     });
 
     myMap.current = map;

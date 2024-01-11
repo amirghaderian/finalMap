@@ -19,7 +19,7 @@ import {
   Stack,
   Tooltip,
 } from "@mui/material";
-import Iran from "../../images/iranFlag.png";
+import Iran from "../../assets/images/iranFlag.png";
 import data from "../../services/servers.json";
 import { useEffect, useState, useCallback } from "react";
 import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
@@ -87,6 +87,7 @@ const Dialogs = ({
     p: 0,
     width: "100%",
     maxWidth: 282,
+    height:"150px",
     borderRadius: 2,
     border: "1px solid",
     borderColor: "divider",
@@ -194,19 +195,20 @@ const Dialogs = ({
               </Stack>
               <Box sx={{ flexGrow: 1, position: "relative" }}>
                 <Box
-                  sx={{ height: "100%", maxHeight: "100%", overflowY: "auto" }}
+                className="h-full max-h-full overflow-y-auto items-baseline "
                 >
                   <FormControl sx={style} aria-label="mailbox folders">
-                    <FormGroup sx={{ px: 1 }}>
+                    <FormGroup sx={{ px: 1,height:"500px" ,}}>
                       {nearPoints
                         .sort((a, b) => a.id - b.id)
                         .map((item) => {
                           return (
-                            <>
-                              <FormControlLabel
+                            <div key={item.id}>
+                              <FormControlLabel key={item}
                                 label={
                                   <Stack direction="row">
                                     <img
+                                    className="my-auto"
                                       style={{
                                         width: "32px",
                                         height: "24px",
@@ -247,7 +249,7 @@ const Dialogs = ({
                                 }
                               />
                               <Divider light sx={{ borderStyle: "dashed" }} />
-                            </>
+                            </div>
                           );
                         })}
                     </FormGroup>
